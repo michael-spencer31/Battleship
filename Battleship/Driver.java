@@ -20,7 +20,7 @@ public class Driver{
 
 		Scanner scan = new Scanner(System.in);
 
-		InputHandle ih = new InputHandle();
+		//InputHandle ih = new InputHandle();
 
 		//gridValue = ih.convertInput('A', 2, 0);
 
@@ -28,7 +28,7 @@ public class Driver{
 
 		System.out.println("Enter the location of your first ship: ");
 
-		String[] locations = new String[3];
+		String[] frigate = new String[3];
 		int[] frigateLocations = new int[3];
 
 		String[] battleship = new String[5];
@@ -43,11 +43,12 @@ public class Driver{
 		int[] allLocations = new int[14];
 		int locationHolder = 0;
 
+		/**
 		for(int i = 0; i < locations.length; i++){
 
 			locations[i] = scan.nextLine();
 		}
-		ih.createShips(locations, frigateLocations);
+		//ih.createShips(locations, frigateLocations);
 
 		/**
 		System.out.println("Enter the second ship: ");
@@ -67,8 +68,22 @@ public class Driver{
 		}
 		*/
 		//update locations on the grid
-		gui.addToGrid(frigateLocations);
+		//gui.addToGrid(frigateLocations);
 		//gui.addToGrid(battleshipLocations);
+
+		while(!gui.addFrigate()){}
+		//while(!gui.addPatrol()){}
+		//while(!gui.addBattleship()){}
+		//while(!gui.addSub()){}
+
+		frigateLocations = gui.getFrigate();
+		patrolLocations = gui.getPatrol();
+		battleshipLocations = gui.getBattleship();
+		subLocations = gui.getSub();
+
+		for(int i = 0; i < frigateLocations.length; i++){
+			System.out.println("Locations: " + frigateLocations[i]);
+		}
 
 		GenerateEnemy ge = new GenerateEnemy();
 
