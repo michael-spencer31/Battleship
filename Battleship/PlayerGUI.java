@@ -71,4 +71,78 @@ public class PlayerGUI extends JFrame implements MouseListener{
 			myPanels[location - 1].setBackground(Color.GREEN);
 		}
 	}
+	int[] frigateLocations = new int[3];
+	int[] patrolLocations = new int[2];
+	int[] subLocations = new int[4];
+	int[] battleshipLocations = new int[5];
+
+	public boolean addFrigate(){
+
+		int counter = 0;
+
+		for(int i = 0; i < myPanels.length; i++){
+
+			if(myPanels[i].getBackground() == Color.RED){
+
+				frigateLocations[counter] = i;
+				counter++;
+			}
+		}
+		if(counter == 3)
+			return true;
+		return false;
+	}
+	public int[] getFrigate(){
+		return frigateLocations;
+	}
+	public int[] getSub(){
+		return subLocations;
+	}
+	public int[] getBattleship(){
+		return battleshipLocations;
+	}
+	public int[] getPatrol(){
+		return patrolLocations;
+	}
+	public boolean addPatrol(){
+
+		int counter = 0;
+
+		for(int i = 0; i < myPanels.length; i++){
+
+			if(myPanels[i].getBackground() == Color.RED)
+				counter++;
+		}
+		if(counter == 5)
+			return true;
+		return false;
+	}
+	public boolean addBattleship(){
+
+		int counter = 0;
+
+		for(int i = 0; i < myPanels.length; i++){
+
+			if(myPanels[i].getBackground() == Color.RED){
+				counter++;
+			}
+		}
+		if(counter == 10)
+			return true;
+		return false;
+	}
+	public boolean addSub(){
+
+		int counter = 0;
+
+		for(int i = 0; i < myPanels.length; i++){
+
+			if(myPanels[i].getBackground() == Color.RED){
+				counter++;
+			}
+		}
+		if(counter == 14)
+			return true;
+		return false;
+	}
 }
