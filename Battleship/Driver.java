@@ -7,26 +7,15 @@ public class Driver{
 		PlayerGUI gui = new PlayerGUI();
 		gui.setVisible(true);
 
-		String input = "A1";
 		int gridValue = 0;
 
 		char letter; // = input.charAt(0);
 
 		char numberChar; //= input.charAt(1);
 
-		//check if the number is 10
-
 		int number = 0; // = Character.getNumericValue(numberChar);
 
 		Scanner scan = new Scanner(System.in);
-
-		//InputHandle ih = new InputHandle();
-
-		//gridValue = ih.convertInput('A', 2, 0);
-
-		//System.out.println(gridValue);
-
-		System.out.println("Enter the location of your first ship: ");
 
 		String[] frigate = new String[3];
 		int[] frigateLocations = new int[3];
@@ -43,54 +32,51 @@ public class Driver{
 		int[] allLocations = new int[14];
 		int locationHolder = 0;
 
-		/**
-		for(int i = 0; i < locations.length; i++){
-
-			locations[i] = scan.nextLine();
-		}
-		//ih.createShips(locations, frigateLocations);
-
-		/**
-		System.out.println("Enter the second ship: ");
-
-		for(int i = 0; i < battleship.length; i++){
-
-			battleship[i] = scan.nextLine();
-		}
-
-		ih.createShips(battleship, battleshipLocations);
-
-		System.out.println("Enter the third ship: ");
-
-		for(int i = 0; i < patrol.length; i++){
-
-			patrol[i] = scan.nextLine();
-		}
-		*/
-		//update locations on the grid
-		//gui.addToGrid(frigateLocations);
-		//gui.addToGrid(battleshipLocations);
-
 		while(!gui.addFrigate()){}
-		//while(!gui.addPatrol()){}
-		//while(!gui.addBattleship()){}
-		//while(!gui.addSub()){}
 
 		frigateLocations = gui.getFrigate();
+
+		while(!gui.validateInput(frigateLocations)){
+
+			gui.reset();
+			while(!gui.addFrigate()){}
+		}
+		gui.setValidShips();
+
+		while(!gui.addPatrol()){}
+
 		patrolLocations = gui.getPatrol();
+
+		while(!gui.validateInput(patrolLocations)){
+
+			gui.reset();
+			while(!gui.addPatrol()){}
+		}
+		gui.setValidShips();
+
+		/**
+		while(!gui.addBattleship()){}
+
 		battleshipLocations = gui.getBattleship();
+
+		while(!gui.validateInput(battleshipLocations)){
+
+			gui.reset();
+			while(!gui.addBattleship()){}
+		}
+		gui.setValidShips();
+
+		while(!gui.addSub()){}
+
 		subLocations = gui.getSub();
 
-		for(int i = 0; i < frigateLocations.length; i++){
-			System.out.println("Locations: " + frigateLocations[i]);
-		}
+		while(!gui.validateInput(subLocations)){
 
-		GenerateEnemy ge = new GenerateEnemy();
-
-		//ge.placeShips();
-
-		System.out.println("hello");
-
+			gui.reset();
+			while(!gui.addSub()){}
+		}s
+		gui.setValidShips();
+		*/
 		Ship[] ships = new Ship[]{
 			new Ship(3),
 			new Ship(2),
@@ -101,5 +87,19 @@ public class Driver{
 		enemyBoard.place(ships);
 		enemyBoard.printBoard();
 
+		//create the ai gui the player will actually see 
+		VisibleOpponentGUI visibleGUI = new VisibleOpponentGUI();
+		visibleGUI.setVisible(true);
+
+		//System.out.println(visibleGUI.getShot(gui));
+
+		char[][] opponentBoard = new char[10][10];
+
+		opponentBoard = enemyBoard.getBoard();
+
+		while(true){
+				visibleGUI.getShot(opponentBoard);
+	
+		}
 	}
 }

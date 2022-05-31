@@ -71,6 +71,36 @@ public class PlayerGUI extends JFrame implements MouseListener{
 			myPanels[location - 1].setBackground(Color.GREEN);
 		}
 	}
+	public boolean validateInput(int[] values){
+
+		return validateVertical(values) || validateHorizontal(values);
+	}
+	public boolean validateHorizontal(int[] values){
+
+		Arrays.sort(values);
+
+		for(int i = 1; i < values.length; i++){
+
+			if(values[i] - values[i - 1] != 1){
+
+				return false;
+			}
+		}
+		return true;
+	}
+	public boolean validateVertical(int[] values){
+
+		Arrays.sort(values);
+
+		for(int i = 1; i < values.length; i++){
+
+			if(values[i] - values[i - 1] != 10){
+
+				return false;
+			}
+		}
+		return true;
+	}
 	int[] frigateLocations = new int[3];
 	int[] patrolLocations = new int[2];
 	int[] subLocations = new int[4];
@@ -79,6 +109,7 @@ public class PlayerGUI extends JFrame implements MouseListener{
 	public boolean addFrigate(){
 
 		int counter = 0;
+		boolean stop = false;
 
 		for(int i = 0; i < myPanels.length; i++){
 
@@ -89,6 +120,51 @@ public class PlayerGUI extends JFrame implements MouseListener{
 			}
 		}
 		if(counter == 3)
+			return true;
+		return false;
+	}
+	public boolean addPatrol(){
+
+		int counter = 0;
+
+		for(int i = 0; i < myPanels.length; i++){
+
+			if(myPanels[i].getBackground() == Color.RED){
+				patrolLocations[counter] = i;
+				counter++;
+			}
+		}
+		if(counter == 2)
+			return true;
+		return false;
+	}
+	public boolean addBattleship(){
+
+		int counter = 0;
+
+		for(int i = 0; i < myPanels.length; i++){
+
+			if(myPanels[i].getBackground() == Color.RED){
+				battleshipLocations[counter] = i;
+				counter++;
+			}
+		}
+		if(counter == 5)
+			return true;
+		return false;
+	}
+	public boolean addSub(){
+
+		int counter = 0;
+
+		for(int i = 0; i < myPanels.length; i++){
+
+			if(myPanels[i].getBackground() == Color.RED){
+				subLocations[counter] = i;
+				counter++;
+			}
+		}
+		if(counter == 4)
 			return true;
 		return false;
 	}
@@ -104,45 +180,25 @@ public class PlayerGUI extends JFrame implements MouseListener{
 	public int[] getPatrol(){
 		return patrolLocations;
 	}
-	public boolean addPatrol(){
-
-		int counter = 0;
+	
+	public void reset(){
 
 		for(int i = 0; i < myPanels.length; i++){
 
-			if(myPanels[i].getBackground() == Color.RED)
-				counter++;
-		}
-		if(counter == 5)
-			return true;
-		return false;
-	}
-	public boolean addBattleship(){
+			if(myPanels[i].getBackground() != Color.YELLOW){
+				myPanels[i].setBackground(Color.BLUE);
 
-		int counter = 0;
+			}
+		}
+	}
+	public void setValidShips(){
 
 		for(int i = 0; i < myPanels.length; i++){
 
 			if(myPanels[i].getBackground() == Color.RED){
-				counter++;
+
+				myPanels[i].setBackground(Color.YELLOW);
 			}
 		}
-		if(counter == 10)
-			return true;
-		return false;
-	}
-	public boolean addSub(){
-
-		int counter = 0;
-
-		for(int i = 0; i < myPanels.length; i++){
-
-			if(myPanels[i].getBackground() == Color.RED){
-				counter++;
-			}
-		}
-		if(counter == 14)
-			return true;
-		return false;
 	}
 }

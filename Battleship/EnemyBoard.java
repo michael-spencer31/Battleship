@@ -125,9 +125,10 @@ public class EnemyBoard{
         }
         return thereIsRoom;
     }
+    OpponentGUI oGUI = new OpponentGUI();
+
     public void printBoard() {
 
-    	OpponentGUI oGUI = new OpponentGUI();
     	int counter = 0;
 
     	for (int i = 0; i < rows; i++){
@@ -146,5 +147,12 @@ public class EnemyBoard{
     		}
     	}
 		oGUI.setVisible(true);
+    }
+    public boolean getShot(OpponentGUI opponentGUI){
+
+    	return false;
+    }
+    public char[][] getBoard(){
+    	return board;
     }
 }

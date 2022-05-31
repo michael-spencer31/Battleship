@@ -7,12 +7,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class OpponentGUI extends JFrame implements MouseListener{
+public class VisibleOpponentGUI extends JFrame implements MouseListener{
 
 	JFrame myFrame = new JFrame();
 	JLabel myPanels[];
 
-	public OpponentGUI(){
+	public VisibleOpponentGUI(){
 
 		super("Opponent Grid");
 		setSize(800, 400);
@@ -66,29 +66,22 @@ public class OpponentGUI extends JFrame implements MouseListener{
 	public void mousePressed(MouseEvent e){
 
 	}
-	public void addToGrid(int location){
+	public boolean getShot(char[][] opponentBoard){
 
-		myPanels[location].setBackground(Color.GREEN);
-	}
-	public void addToGrid2(int[] locations){
+		int counter = 0;
 
-		int location = 0;
+		for(int i = 0; i < myPanels.length; i++){
 
-		for(int i = 0; i < locations.length; i++){
+			if(myPanels[i].getBackground() == Color.YELLOW){
 
-			location = locations[i];
-				System.out.println(locations[i]);
-
-			myPanels[location - 1].setBackground(Color.GREEN);
+				counter = i;
+				break;
+			}
 		}
-		myPanels[34].setBackground(Color.BLACK);
-		System.out.println("emma");
-	}
-	public boolean getShot(int shotLocation){
+		System.out.println("Yellow found!" + counter);
 
-		if(myPanels[shotLocation].getBackground() == Color.GREEN)
-			return true;
-
+		
+	
 		return false;
 	}
 }

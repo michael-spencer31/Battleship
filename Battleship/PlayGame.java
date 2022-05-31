@@ -56,4 +56,12 @@ public class PlayGame{
 			return true;
 		return false;
 	}
+	public boolean battleshipSunk(int[] battleshipLocations, int[] shotLocations){
+
+		Arrays.sort(subLocations);
+
+		if(subArray(shotLocations, battleshipLocations))
+			return true;
+		return false;
+	}
 }
