@@ -78,10 +78,27 @@ public class VisibleOpponentGUI extends JFrame implements MouseListener{
 				break;
 			}
 		}
-		System.out.println("Yellow found!" + counter);
 
-		
+		if(opponentBoard[counter/10][counter%10] == 'S'){
+
+			myPanels[counter].setBackground(Color.ORANGE);
+		}
 	
+		return false;
+	}
+	public boolean gameOver(){
+
+		int counter = 0;
+
+		for(int i = 0; i < myPanels.length; i++){
+
+			if(myPanels[i].getBackground() == Color.ORANGE){
+
+				counter++;
+			}
+		}
+		if(counter == 14)
+			return true;
 		return false;
 	}
 }
