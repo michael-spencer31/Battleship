@@ -97,9 +97,10 @@ public class Driver{
 
 		opponentBoard = enemyBoard.getBoard();
 
-		while(true){
-				visibleGUI.getShot(opponentBoard);
+		while(!visibleGUI.gameOver()){
+			visibleGUI.getShot(opponentBoard);
 	
 		}
+		System.out.println("Game Over!");
 	}
 }
